@@ -1,0 +1,251 @@
+Practical No: 1
+Install, configure and run Hadoop and HDFS.
+
+Documentation for Installing Hadoop on Windows 10/11
+Prerequisites
+1.Java Installation:
+o Download Java JDK.
+o Install Java and configure the JAVA_HOME environment variable.
+o Add JAVA_HOME\bin to the system PATH.
+o Then Go to System variable and in Path section click on edit.
+oAdd same Variable value. 
+
+2. Download Hadoop:
+o Visit the official Apache Hadoop download page.
+o Extract the downloaded file to a directory like C:\Hadoop. 
+o Save this extracted file in Local disk C by renaming it as “Hadoop”.
+
+Configuration:
+1.Set Environment Variables:
+o Add HADOOP_HOME as the Hadoop directory.
+
+oSave 2 file paths in Path variable as:
+1)C:\hadoop\bin
+2)C:\hadoop\sbin 
+o Update the PATH variable with %HADOOP_HOME%\bin.
+
+
+2.Edit Configuration Files:
+o Open the following files in the etc\hadoop directory:
+o Go to etc folder and the open hadoop file then go to hadoop-env and edit that file in notepad.
+o In set given below in the image add the jdk file path
+ 
+2.core-site.xml:
+xml
+Copy code
+<configuration>
+<property>
+<name>fs.defaultFS</name>
+<value>hdfs://localhost:9000</value>
+</property>
+</configuration>
+
+3.httpfs-site.xml:
+
+<configuration>
+<property>
+<name>dfs.replication</name>
+<value>1</value>
+</property>
+<property>
+<name>dfs.name.dir</name>
+<value>file:///C:/Hadoop/data/namenode</value>
+</property>
+<property>
+<name>dfs.data.dir</name>
+<value>file:///C:/Hadoop/data/datanode</value>
+</property>
+</configuration>
+
+4.marped-site.xml: 
+<configuration>
+<property>
+<name>mapreduce.framework.name</name>
+<value>yarn</value>
+</property>
+</configuration>
+
+5.yarn-site.xml:
+<configuration>
+<property>
+<name>yarn.nodemanager.aux-services</name>
+<value>mapreduce_shuffle</value>
+</property>
+<property>
+<name>yarn.nodemanager.auxservices.mapreduce.shuffle.class</na me>
+<value>org.apache.hadoop.mapred.ShuffleHandler</value>
+</property>
+</configuration>
+
+o According to given image edit the file in notepad using the code given above and follow the sequence of numbers in given above image & edit it. 
+6.Correction of bin file:
+o Delete the bin file located in hadoop folder.
+o Install new bin file by using given link and extract it in same hadoop folder:
+
+7.Installation of MSCVR 120 .dll file:
+o Follow the given link and install 64 bit file and after installation extract that folder and copy the mscvr file and paste it in the system 32 folder in the windows file located in Local Disk C.
+o Then go to mscv 170 file page and download that file.
+8. Open cmd prompt and run given commands:
+>>hdfs namenode -format press enter
+>>cd \
+press enter
+>>cd Hadoop press enter
+>>cd sbin press enter
+>>start-dfs.cmd press enter
+>>start-yarn.cmd press enter
+Note:- (After running all these commands given above firstly don’t
+close the command prompt and after running start-dfs.cmd command & start-yarn.cmd command don’t close the pop-ups of command prompt) 
+9.Final Step:
+o Run localhost:9870 in the chrome and in case it fails to run then use localhost:50070 for Hadoop Overview.
+o Run localhost:8088 on the chrome for Hadoop Cluster.
+
+Practical No: 2
+Steps:
+1] Install hadoop version 3.3.3 (https://hadoop.apache.org/release/3.3.3.html)
+
+2]Install Java jdk 1.8 version (Windows)
+
+3] Now to run hadoop open cmd prompt – Right Click – Run as administrator
+
+4] Now we will format namenode by using command (hdfs namenode  –format)
+ 
+5] Now we will start all commands in hadoop by using command(start-all.cmd)
+
+(Make Sure that all commands are running then proceed further)
+
+6] Now Enter Path (C:\hadoop\sbin) as given below:
+ 
+7] Now open browser and type localhost:9870 and locathost:8088 to open hadoop.
+ 
+8] Now we will create a folder and in that folder we will create a (.txt) file and enter data into it.
+ 
+9] Now we will go again to cmd and type some commands:
+
+i) we will create input file in hadoop 
+ 
+Output:
+(To see whether the file is created go to localhost:9870 – Utilities- Browse the file system)
+ 
+ii) Now we will insert our data.txt file into input directory
+ 
+(Note: Use your own path of data file )
+
+Output:
+(To see whether data file is inserted Click on input tab in Browse Directory )
+
+iii) Now to check the data in data.txt file:  
+
+iv) Now to implement word count program type command:
+(C:\hadoop\sbin>hadoop  jar  C:/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.3.jar wordcount  /input  /output) and Click Enter.
+To get path go to C:/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.3.jar
+Now choose last file and copy file name:
+Output:
+(Here it will create a output directory in Browse directory)
+
+10) Now to see the output go to cmd again and type:
+     (hadoop  fs  –cat  /output/*)
+We can also see the output by going to (Browse Directory – Click on Output Tab – Click on part-r-00000 – Click on Head the file (first 32K) )
+
+11] Now to check whether it is showing in hadoop cluster:
+
+(Go to localhost:8088 here it will show)
+
+Practical No: 4
+Hardware / Software Required: Windows 10, MongoDB, Jupyter Notebook 
+Install MongoDB Community Edition:
+
+1. Download the installer. 
+● Download the MongoDB Community .msi installer from the following link: - https://www.mongodb.com/try/download/community
+● In the Platform dropdown, select Windows. 
+● In the Package dropdown, select msi. 
+● Click Download. 
+
+ 
+2. Run the MongoDB installer. 
+● For example, from the Windows Explorer/File Explorer: 
+Go to the directory where you downloaded the MongoDB installer (.msi file). 
+● By default, this is your Downloads directory. 
+● Double-click the .msi file.
+
+3. Follow the MongoDB Community Edition installation wizard. 
+● Choose Setup Type as complete
+
+4. Select Install MongoD as a Service MongoDB as a service. 
+● Run the service as Network Service user (Default)
+
+5. Select Install MongoDB Compass (Default) given in bottom left corner tick the box;
+ Just finalize the installation.
+
+6. Launch MongoDB: Once the installation is complete, you can start MongoDB using the mongod command in the command prompt
+● And after launching it create new connection as given below;
+● Click Save & Connect
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+●	Create a new database:  By clicking “ + Create database ” 
+●	Add a database and collection name and remember it for further process
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+Installing Jupyter Notebook using pip:
+
+1.	Jupyter: Command to install Jupyter: 
+●	python -m pip install jupyter 
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+2.After finishing Installation run the given below command to just simply open the jupyter notebook:
+● Jupyter notebook 
+3.Make a new notebook in the jupyter notebook and run this code given below:
+[Note: Make sure that you change the database and collection name as per your given code and localhost of the mongodb compass]
+
+● Click download to download the python file 
+
+Final Procedure:
+
+1.	Open the Mongodb compass and go to your collection folder and just import the data or that python file we just downloaded from jupyter notebook by clicking on “ Import Data ”.
+2.	Show the result displayed on the MongoDB:
+
+
+
+
+
+ 
